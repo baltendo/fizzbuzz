@@ -8,23 +8,7 @@ class FizzBuzzSpec extends Specification{
         def fb = new FizzBuzz()
 
         when:
-        def output = fb.transformWithStringConcatenation(input)
-
-        then:
-        output == expected
-
-        where:
-        input | expected
-        null | null
-        ""   | ""
-        "test test test" | "test test fizz"
-    }
-
-    def "should replace every third word with 'fizz' with StringBuilder"() {
-        def fb = new FizzBuzz()
-
-        when:
-        def output = fb.transformWithStringBuilder(input)
+        def output = fb.transform(input)
 
         then:
         output == expected

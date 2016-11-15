@@ -6,6 +6,10 @@ public class FizzBuzz {
     private static final String FIZZ = "fizz";
     private static final String SPACE = " ";
 
+    public String transform(String input) {
+        return transformWithStringBuilder(input);
+    }
+
     public String transformWithStringConcatenation(String input) {
         if (input == null) {
             return null;

@@ -1,21 +1,24 @@
 package at.baltendo.fizzbuzz;
 
+import at.baltendo.fizzbuzz.util.StringBuilderFactory;
+
 public class FizzBuzz {
 
-    private static final String SPLITTER = "\\s+";
+    private static final String SEPARATOR = "\\s+";
     private static final String FIZZ = "fizz";
+    private static final String BUZZ = "buzz";
     private static final String SPACE = " ";
 
     public String transform(String input) {
         return transformWithStringBuilder(input);
     }
 
-    public String transformWithStringConcatenation(String input) {
+    String transformWithStringConcatenation(String input) {
         if (input == null) {
             return null;
         }
 
-        String[] words = input.split(SPLITTER);
+        String[] words = input.split(SEPARATOR);
         String result = "";
 
         for (int i = 0; i < words.length; i++) {
@@ -23,45 +26,40 @@ public class FizzBuzz {
 
             if (position % 3 == 0) {
                 result += FIZZ;
+            } else if (position % 5 == 0) {
+                result += BUZZ;
             } else {
                 result += words[i];
             }
 
-            if (i < words.length -1) {
-                result += SPACE;
-            }
+            result += SPACE;
         }
 
-        return result;
+        return result.trim();
     }
 
-    public String transformWithStringBuilder(String input) {
+    String transformWithStringBuilder(String input) {
         if (input == null) {
             return null;
         }
 
-        String[] words = input.split(SPLITTER);
-        int estimatedLengthOfResult = estimateTransformedLength(input);
-        StringBuilder builder = new StringBuilder(estimatedLengthOfResult);
+        StringBuilder builder = StringBuilderFactory.withEstimatedCapacity(input);
+        String[] words = input.split(SEPARATOR);
 
         for (int i = 0; i < words.length; i++) {
             int position = i + 1;
 
             if (position % 3 == 0) {
                 builder.append(FIZZ);
+            } else if (position % 5 == 0) {
+                builder.append(BUZZ);
             } else {
                 builder.append(words[i]);
             }
 
-            if (i < words.length -1) {
-                builder.append(SPACE);
-            }
+            builder.append(SPACE);
         }
 
-        return builder.toString();
-    }
-
-    int estimateTransformedLength(String sentence) {
-        return (int) (sentence.length() * 1.2);
+        return builder.toString().trim();
     }
 }

@@ -2,11 +2,11 @@ package at.baltendo.fizzbuzz
 
 import spock.lang.Specification
 
-class FizzBuzzSpec extends Specification{
+class FizzBuzzSpec extends Specification {
 
-    def "should replace every third word with 'fizz' with string concatenation"() {
-        def fb = new FizzBuzz()
+    def fb = new FizzBuzz()
 
+    def "should replace every third word with 'fizz' and every fifth word by 'buzz' - StringBuilder approach"() {
         when:
         def output = fb.transform(input)
 
@@ -14,19 +14,23 @@ class FizzBuzzSpec extends Specification{
         output == expected
 
         where:
-        input | expected
-        null | null
-        ""   | ""
-        "test test test" | "test test fizz"
+        input                      | expected
+        null                       | null
+        ""                         | ""
+        "test test test test test" | "test test fizz test buzz"
     }
 
-    def "should estimate length of output sentence"() {
-        def fb = new FizzBuzz()
-
+    def "should replace every third word with 'fizz' and every fifth word by 'buzz' - string concatenation approach"() {
         when:
-        def estimated = fb.estimateTransformedLength("aaaaaaaaaa");
+        def output = fb.transformWithStringConcatenation(input)
 
         then:
-        estimated == 12
+        output == expected
+
+        where:
+        input                      | expected
+        null                       | null
+        ""                         | ""
+        "test test test test test" | "test test fizz test buzz"
     }
 }

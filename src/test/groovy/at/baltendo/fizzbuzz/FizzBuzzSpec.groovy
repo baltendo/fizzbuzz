@@ -19,7 +19,7 @@ class FizzBuzzSpec extends Specification {
         ""    | ""
         "test test test" | "test test fizz"
         "test test test test test" | "test test fizz test buzz"
-        "test test test test test test test test test test test test test test test test" | "test test fizz test buzz fizz test test fizz buzz test fizz test test fizz test"
+        "test test test test test test test test test test test test test test test test" | "test test fizz test buzz fizz test test fizz buzz test fizz test test fizzbuzz test"
     }
 
     def "should replace every third word with 'fizz' and every fifth word by 'buzz' - string concatenation approach"() {

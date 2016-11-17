@@ -6,7 +6,7 @@ class FizzBuzzSpec extends Specification {
 
     def fb = new FizzBuzz()
 
-    def "should replace every third word with 'fizz' and every fifth word by 'buzz' - StringBuilder approach"() {
+    def "should transform with StringBuilder"() {
         when:
         def output = fb.transform(input)
 
@@ -14,10 +14,12 @@ class FizzBuzzSpec extends Specification {
         output == expected
 
         where:
-        input                      | expected
-        null                       | null
-        ""                         | ""
+        input | expected
+        null  | null
+        ""    | ""
+        "test test test" | "test test fizz"
         "test test test test test" | "test test fizz test buzz"
+        "test test test test test test test test test test test test test test test test" | "test test fizz test buzz fizz test test fizz buzz test fizz test test fizz test"
     }
 
     def "should replace every third word with 'fizz' and every fifth word by 'buzz' - string concatenation approach"() {
